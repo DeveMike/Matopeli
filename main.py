@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 
 # Muuttujia
 snake_speed = 15
-snake_size = 10
+snake_size = 15
 snake_pos = [[100, 50]]
 snake_direction = 'DOWN'
 snake_new_direction = 'DOWN'
