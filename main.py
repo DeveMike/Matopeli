@@ -64,10 +64,15 @@ while True:
     elif snake_new_direction == 'RIGHT':
         new_head = [snake_pos[0][0] + snake_size, snake_pos[0][1]]
 
-    # Tarkista törmäys seinään
+    # Tarkista törmäys seinään ja resetoi peli tarvittaessa
     if new_head[0] >= width or new_head[0] < 0 or new_head[1] >= height or new_head[1] < 0:
-        pygame.quit()
-        sys.exit()
+        snake_pos = [[100, 50]]
+        snake_direction = 'DOWN'
+        snake_new_direction = 'DOWN'
+        food_pos = [random.randrange(1, (width//snake_size)) * snake_size, random.randrange(1, (height//snake_size)) * snake_size]
+        food_spawn = True
+        score = 0
+        continue
 
     # Lisää uusi pää madolle
     snake_pos.insert(0, new_head)
@@ -87,8 +92,13 @@ while True:
 
     # Tarkista törmäys itseensä
     if snake_pos[0] in snake_pos[1:]:
-        pygame.quit()
-        sys.exit()
+        snake_pos = [[100, 50]]
+        snake_direction = 'DOWN'
+        snake_new_direction = 'DOWN'
+        food_pos = [random.randrange(1, (width//snake_size)) * snake_size, random.randrange(1, (height//snake_size)) * snake_size]
+        food_spawn = True
+        score = 0
+        continue
 
     # Piirtäminen
     screen.fill(BLACK)
